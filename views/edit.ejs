@@ -1,0 +1,13 @@
+<%- include('partials/header.ejs') %>
+<body>
+    <%- include('partials/navbar.ejs') %>
+    <form method="post" action="/save-edit" class="post-container">
+        <input type="text" name="title" class="edit-title" value="<%= posts.title %>">
+        <input type="text" name="content" class="edit-content" value="<%= posts.content %>">
+        <input type="hidden" name = "id" value="<%=posts.id %>" >
+        <button type="submit" class="entry-btn" >Save</button>
+
+    </form>
+
+</body>
+</html>

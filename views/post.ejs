@@ -1,0 +1,13 @@
+<%- include('partials/header.ejs') %>
+<body>
+    <%- include('partials/navbar.ejs') %> 
+    <div class="post-container">
+        <h1 class="post-title"><%= posts.title %></h1>
+        <p class="post-content"><%= posts.content %></p>
+        <a href="edit/<%= posts.id %>">
+            <button class="entry-btn">Edit</button>
+        </a>
+    </div>
+    
+</body>
+</html>

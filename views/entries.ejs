@@ -1,0 +1,19 @@
+<%- include('partials/header.ejs') %>
+    <body>
+        <%- include('partials/navbar.ejs') %> 
+        <div class="entry-grid">
+            <% jentries.forEach(element => { %>
+            <div class="entry-box">
+                <h2 class="entry-title"><%= element.title %></h2>
+                <p class="entry-content"><%= element.content %></p>
+                <div class="entry-bottom">
+                    <a href="/entry/<%= element.id %>">
+                    <button class="entry-btn">View</button>
+                    </a>
+                    <p class="entry-time"><%= element.created_at %></p>
+                </div>
+            </div>
+            <% }); %>
+        </div>
+    </body>
+</html>

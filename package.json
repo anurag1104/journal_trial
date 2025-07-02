@@ -1,0 +1,22 @@
+{
+  "name": "todo-basic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:css": "tailwindcss -i ./public/styles/input.css -o ./public/styles/styles.css --watch",
+    "dev": "concurrently \"npm run dev:css\" \"node app.js\""
+  },
+  "author": "anurag",
+  "license": "ISC",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.11",
+    "bcrypt": "^6.0.0",
+    "dayjs": "^1.11.13",
+    "express": "^5.1.0",
+    "pg": "^8.16.2",
+    "tailwindcss": "^4.1.11"
+  }
+}
