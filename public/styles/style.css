@@ -169,21 +169,39 @@ body{
 }
 
 .nav-list{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-direction: row;
     list-style: none;
 }
 
 .nav-list-item{
 cursor: pointer;
-font-size: 14px;
 background-color: rgb(238, 238, 238);
 border-radius: 4px;
-color: rgb(46, 46, 46);
 border-width: 0.7px;
 border-color: #b4b4b4;
 border-style: solid;
 padding: 3px 8px;
 }
 
+#home-a{
+    text-decoration: none;
+    color: rgb(46, 46, 46);
+    font-size: 13px;
+}
+
+#logout-a{
+    text-decoration: none;
+    color: rgb(46, 46, 46);
+    font-size: 13px;
+}
+
 .nav-list-item:hover{
     border-color: #4d4d4d;
+}
+
+#logout-item{
+    margin-right: 30px;
 }

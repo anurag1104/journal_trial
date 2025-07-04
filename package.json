@@ -16,6 +16,9 @@
     "bcrypt": "^6.0.0",
     "dayjs": "^1.11.13",
     "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
     "pg": "^8.16.2",
     "tailwindcss": "^4.1.11"
   }
