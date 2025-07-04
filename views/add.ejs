@@ -1,0 +1,12 @@
+<%- include('partials/header.ejs') %>
+<body>
+    <%- include('partials/navbar.ejs') %>
+    <form method="post" action="/save-add" class="post-container">
+        <input type="text" name="title" class="edit-title">
+        <input type="text" name="content" class="edit-content">
+        <button type="submit" class="entry-btn" >Save</button>
+
+    </form>
+
+</body>
+</html>

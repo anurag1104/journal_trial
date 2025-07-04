@@ -3,7 +3,7 @@
         <%- include('partials/navbar.ejs') %> 
         <div class="entry-grid">
             <% jentries.forEach(element => { %>
-            <div class="entry-box">
+            <div class="entry-card">
                 <h2 class="entry-title"><%= element.title %></h2>
                 <p class="entry-content"><%= element.content %></p>
                 <div class="entry-bottom">
@@ -12,9 +12,11 @@
                     </a>
                     <p class="entry-time"><%= element.created_at %></p>
                 </div>
-                <button>Add Entry</button>
             </div>
             <% }); %>
+            <a href="/add">
+                    <button class="entry-btn" id="add-btn">Add</button>
+            </a>
         </div>
     </body>
 </html>

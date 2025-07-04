@@ -4,8 +4,11 @@
     <div class="post-container">
         <h1 class="post-title"><%= posts.title %></h1>
         <p class="post-content"><%= posts.content %></p>
-        <a href="edit/<%= posts.id %>">
+        <a href="edit/<%= posts.id %>" >
             <button class="entry-btn">Edit</button>
+        </a>
+        <a href="delete/<%= posts.id %>" >
+            <button class="entry-btn" id="del-btn" >Delete</button>
         </a>
     </div>
     
