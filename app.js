@@ -29,6 +29,11 @@ app.use(session({
     }
 }))
 
+app.use((err, req, res, next) => {
+    console.error("Error: ",err);
+    res.status(500).send("Something went wrong")
+})  // error handling middleware- Handles error whenever next(error) is returned
+
 //db setup
 const db = new pg.Client({
     user : 'postgres',
@@ -105,8 +110,10 @@ app.post("/login", async(req,res) => {
 
 })
 
+
+// Entries home page
 app.get("/entries",isAuth, async(req,res) => {
-    console.log("Inside entries route handler",req.session.user)
+    // console.log("Inside entries route handler",req.session.user)
     const currentUser = req.session.user;
     const currentUserMail = currentUser.user_name;
     let entries = await db.query("SELECT u.user_name, j.title, j.content, j.created_at, j.id FROM journal_entries j INNER JOIN users_login u ON j.user_id = u.id WHERE u.user_name = $1",[currentUserMail]);
@@ -115,7 +122,7 @@ app.get("/entries",isAuth, async(req,res) => {
         let formatted = dayjs(timeStamp).format("DD-MM-YYYY  HH:mm");
         elem.created_at = formatted
         } )
-    console.log("check",currentUserMail, entries)
+    // console.log("check",currentUserMail, entries)
     res.render("entries.ejs",{jentries:entries.rows});
 })
 
@@ -126,7 +133,7 @@ app.get("/entry/:id", async(req,res) => {
     
     let postId = req.params.id;
     let post = await db.query("SELECT * from journal_entries WHERE id = $1",[postId])
-    console.log(post.rows);
+    // console.log(post.rows);
     res.render("post.ejs",{posts : post.rows[0]});
 })
 
@@ -135,16 +142,51 @@ app.get("/entry/edit/:id", async(req,res) => {
     
     let postId = req.params.id;
     let post = await db.query("SELECT * from journal_entries WHERE id = $1",[postId])
-    console.log(post.rows);
+    // console.log(post.rows);
     res.render("edit.ejs",{posts : post.rows[0]});
 })
 
 //save edit
 app.post("/save-edit", async(req,res) => {    
     const {id, title, content} = req.body;
-    console.log(id, title, content);
+    // console.log(id, title, content);
     await db.query("UPDATE journal_entries SET content = $1, title = $2 WHERE id=$3",[content, title, id])
     res.redirect(`/entry/${id}`);
+})
+
+//add post
+app.get("/add", (req, res) => {
+    res.render("add.ejs");
+})
+
+//save-add
+app.post("/save-add", async(req,res) => {
+    const {title, content} = req.body;
+    console.log(req.session.user);
+    const {id}  = req.session.user;
+    await db.query('INSERT INTO journal_entries(title, "content", user_id) VALUES ($1,$2,$3)',[title, content, id]);
+    console.log(id);
+       
+    res.redirect("/entries");
+} )
+
+//delete post
+app.get("/entry/delete/:id",async(req,res) => {
+    const postId = req.params.id;
+    await db.query("DELETE FROM journal_entries WHERE id = $1",[postId]);
+    res.redirect("/entries");
+})
+
+
+//logout handler
+app.get("/logout", (req,res,next) => {
+    console.log("Inside logout handler");
+    req.session.destroy( (err) => {
+        if(err){
+            return next(err);
+        }
+        res.redirect("/");
+    })
 })
 
 

@@ -62,7 +62,7 @@ body{
 
 .entry-grid{
     display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     gap: 10px;
     justify-content: space-around;
@@ -71,11 +71,11 @@ body{
     height: 80vh;
     background-color: rgb(238, 238, 238);
     margin: 50px auto;
-    padding: 30px;
+    padding: 50px;
     border-radius: 10px;
 }
 
-.entry-box{
+.entry-card{
     padding: 10px;
     border-color: #4d4d4d;
     border-style: none;
@@ -153,7 +153,7 @@ body{
 .post-container .entry-btn{
     position: absolute;
     right:30px;
-    bottom: 30px;
+    bottom: 10px;
 }
 
 .nav{
@@ -166,6 +166,7 @@ body{
     height: 40px;
     position: fixed;
     background-color: rgb(212, 219, 252);    
+    z-index: 999;
 }
 
 .nav-list{
@@ -204,4 +205,17 @@ padding: 3px 8px;
 
 #logout-item{
     margin-right: 30px;
+}
+
+#add-btn{
+    position: absolute;
+    right:95px;
+    bottom: 10px;
+}
+
+#del-btn{
+    position: absolute;
+    right:110px;
+    bottom: 10px;
+ 
 }
